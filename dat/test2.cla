@@ -1,9 +1,0 @@
-TEST        FILE,NAME('TEST2'),PRE(TST),RECLAIM
-RECORD	       RECORD
-B			BYTE
-SH			SHORT
-L			LONG
-R			REAL
-D			DECIMAL(11,2)
-ST			STRING(10)
-             . .
