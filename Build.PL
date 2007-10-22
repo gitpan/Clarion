@@ -6,6 +6,7 @@ Module::Build->new
     module_name	=> 'Clarion',
     license	=> 'perl',
     requires	=> {
+	perl	=> '5.6.0',
 	FileHandle	=> 0,
     },
     build_requires	=> {

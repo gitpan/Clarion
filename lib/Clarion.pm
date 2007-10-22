@@ -1,11 +1,12 @@
 package Clarion;
 
+use 5.006;
 use strict;
 use warnings;
 
 use FileHandle;
 
-our $VERSION = '1.1.1';
+our $VERSION = '1.1.2';
 
 =head1 NAME
 
@@ -158,7 +159,7 @@ sub open {
   my $c=qw(a l d A A C s G)[$fd->{fldtype}];
   $c='a'	unless $c;
   $c.=$fd->{length}	if uc($c)eq 'A';
-  $c='(a'.$fd->{length}.' @0)'	if 'G' eq $c;
+  $c='a'.$fd->{length}.' X'.$fd->{length}.' '	if 'G' eq $c;
   $self->{record}{unpack}.=$c.' ';
  }
 
@@ -270,7 +271,7 @@ sub readRecord {
   $memo=''	unless defined($memo);
   $memo.=$m;
  }
- $memo=~s/( |\00)+$//	if $memo;
+ $memo=~s/( +|\00+)$//	if $memo;
  push @Data, $memo;
 
  return 1;
