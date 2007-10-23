@@ -123,11 +123,10 @@ sub open {
  # File is encrypted?
  if($sfatr & FILOWN) {	
 # Looking for key; 4 variants exist
-  $self->{Key}=unpack('x7  n', $header);	# numdels, high word
-#  $self->{Key}=unpack('x67 n', $header);	# reserved, low word
-#  $self->{Key}=unpack('x69 n', $header);	# reserved, high word
-#  $self->{Key}=unpack('x68 v', $header);	# reserved, middle word
-
+  $self->{Key}=[unpack('x8  CX2C', $header)];	# numdels, high word
+#  $self->{Key}=[unpack('x68 CX2C', $header)];	# reserved, low word
+#  $self->{Key}=[unpack('x70 CX2C', $header)];	# reserved, high word
+#  $self->{Key}=[unpack('x68 CC', $header)];	# reserved, middle word
   $header=$self->decrypt($header);
  }
 
@@ -380,8 +379,14 @@ sub file_struct {
 sub decrypt {
  my ($self, $str)=@_;
  return $str	unless defined($self->{Key});
- my $tail=length($str)&1? chop($str) : '';
- return pack('(v)*', map($_ ^ $self->{Key}, unpack('(v)*', $str))).$tail;
+ my $res='';
+ do{
+  my($c1, $c2)=unpack('C2', $str);
+  defined($c1)	or return $res;
+  defined($c2)	or return $res.pack('C', $c1);
+  $res.=pack('C2', $c1^$self->{Key}[0], $c2^$self->{Key}[1]);
+  $str=unpack('x2 a*', $str);
+ }while(1);
 }
 
 sub readData {

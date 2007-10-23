@@ -10,7 +10,7 @@ resources:
   license: http://dev.perl.org/licenses/
 requires:
   FileHandle: 0
-  perl: 5.6.0
+  perl: 5.006
 build_requires:
   Test::More: 0
 provides:
