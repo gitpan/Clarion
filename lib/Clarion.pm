@@ -382,8 +382,7 @@ sub decrypt {
  my $res='';
  do{
   my($c1, $c2)=unpack('C2', $str);
-  defined($c1)	or return $res;
-  defined($c2)	or return $res.pack('C', $c1);
+  defined($c2)	or return $res.$str;
   $res.=pack('C2', $c1^$self->{Key}[0], $c2^$self->{Key}[1]);
   $str=unpack('x2 a*', $str);
  }while(1);
@@ -413,7 +412,8 @@ sub unpackBCD {
 
  my $sign=substr($bcd, 0, 1) eq '0' ? '' : '-';
  $bcd=substr($bcd, 1);
- $bcd=~s/\D/9/g	and warn "Incorrect DECIMAL value!\n";
+ $bcd=~s/\D/9/g	and
+    warn "Incorrect DECIMAL value!\n";
  
  my $sig=substr($bcd, 0, $decsig);
  $sig=~s/^0+//;

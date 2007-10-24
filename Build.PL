@@ -1,5 +1,7 @@
 use Module::Build;
-# See perldoc Module::Build for details of how this works
+
+die "Clarion.pm works only on little-endian architecture!\n"
+    unless 0x04030201==unpack('L', pack('C4', 1..4));
 
 Module::Build->new
 (
@@ -12,5 +14,5 @@ Module::Build->new
     build_requires	=> {
 	Test::More	=> 0,
     },
-    create_makefile_pl => 'traditional',
+    create_makefile_pl => 'small',
 )->create_build_script;

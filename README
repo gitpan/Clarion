@@ -3,6 +3,11 @@ Clarion.pm version 1.1.2
 
 Clarion.pm - Perl module for reading CLARION 2.1 data files
 
+NOTE
+
+This version is for Little-endian architectire only,
+as Clarion 2.1 itself runs only on Intel.
+
 INSTALLATION
 
 To install this module type the following:
