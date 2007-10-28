@@ -6,23 +6,26 @@ use strict;
 use Test::More tests => 9;
 use Clarion;
 
-open F, 'dat/test.csv';
-binmode F;
-my $csv=join('', <F>);
-close F;
+my $csv=readFile('dat/test.csv');
 
 for my $i(1..3)
 {
  my $z=new Clarion "dat/test$i.dat";
  isa_ok ($z, 'Clarion');
-
- open F, "dat/test$i.cla";
- binmode F;
- my $s=join('', <F>);
- close F;
- is($z->file_struct, $s, 'Schema is correct');
-
+ is($z->file_struct, readFile("dat/test$i.cla"), 'Schema is correct');
  is(getCSV($z), $csv, "Data read correctly");
+ $z->close;
+}
+
+sub readFile
+{
+ my $s=shift;
+ open F, $s
+    or die "Cannot open '$s': $!\n";
+ local $/=undef;
+ $s=<F>;
+ close F;
+ return $s;
 }
 
 sub getCSV

@@ -270,7 +270,7 @@ sub readRecord {
   $memo=''	unless defined($memo);
   $memo.=$m;
  }
- $memo=~s/( +|\00+)$//	if $memo;
+ $memo=~s/( +|\00+)\z//	if $memo;
  push @Data, $memo;
 
  return 1;
