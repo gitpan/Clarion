@@ -1,6 +1,6 @@
 ---
 name: Clarion
-version: 1.1.2
+version: 1.02
 author:
   - 'Stas Ukolov <ukoloff@cpan.org>'
   - 'Ilya Chelpanov <ilya@macro.ru>, http://i72.narod.ru or http://i72.by.ru'
@@ -16,7 +16,7 @@ build_requires:
 provides:
   Clarion:
     file: lib/Clarion.pm
-    version: 1.1.2
+    version: 1.02
 generated_by: Module::Build version 0.2806
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html

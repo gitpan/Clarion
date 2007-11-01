@@ -1,5 +1,5 @@
-Clarion.pm version 1.1.2
-========================
+Clarion.pm version 1.02
+=======================
 
 Clarion.pm - Perl module for reading CLARION 2.1 data files
 
@@ -25,6 +25,12 @@ or, alternatively, you may type:
     make install
 
 or, since Clarion.pm is pure perl, you can simply copy it to your perl's @INC.
+
+BUGS
+
+Sometimes ./Build test (or make test) fails comparing floating point numbers
+(eg. got '4.04000000000000004', expected '4.04'). Probably such errors could
+be ignored.
 
 COPYRIGHT AND LICENSE
 

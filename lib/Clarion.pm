@@ -6,7 +6,7 @@ use warnings;
 
 use FileHandle;
 
-our $VERSION = '1.1.2';
+our $VERSION = '1.02';
 
 =head1 NAME
 
