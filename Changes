@@ -5,7 +5,7 @@ Revision history for Perl module Clarion
  + Memo fields can be padded with ' ' or \0
  * Changed "decryption" algorithm to work on perl 5.6
 
-2007-06-14	1.1	Stas Ukolov <ukoloff@cpan.org>
+2007-06-14	1.1.1	Stas Ukolov <ukoloff@cpan.org>
  + Reads memo fields (can be disabled)
  * Correct processing of "encrypted" files
  + Current record can be omited in calls to get_record
